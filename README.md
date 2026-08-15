@@ -1,5 +1,7 @@
 # Geospatial Land-Cover Classification with Spatial Machine Learning
 
+![Project preview](assets/preview.svg)
+
 A Random Forest land-cover workflow that emphasizes a major issue in geospatial AI: **spatial data leakage**.
 
 ## What makes this project stronger than a basic ML notebook
