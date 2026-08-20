@@ -1,33 +1,35 @@
-# Geospatial Land-Cover Classification with Spatial Machine Learning
+# Geospatial Land-Cover ML with Spatial Validation
 
-![Project preview](assets/preview.svg)
+A reproducible geospatial machine-learning project demonstrating **why spatial validation matters** for land-cover classification.
 
-A Random Forest land-cover workflow that emphasizes a major issue in geospatial AI: **spatial data leakage**.
+> **Transparency:** committed data and metrics are synthetic demonstration outputs, not production mapping results.
 
-## What makes this project stronger than a basic ML notebook
-Random train/test splitting can overestimate performance when neighboring samples are spatially autocorrelated. This repository uses spatial blocks to create a more defensible holdout set.
-
-## Skills demonstrated
-- Multispectral feature engineering
-- NDVI and NDWI
+## Technical highlights
+- Multispectral-style features: blue, red, NIR, SWIR, NDVI
 - Random Forest classification
-- Spatial block train/test splitting
-- Feature importance
-- Confusion-matrix evaluation
-- Reproducible Python workflow
+- Random train/test split vs spatial holdout benchmark
+- Feature importance and machine-readable results
+- Runnable script, notebook, tests, figures, and sample data
+
+## Results
+| Validation | Accuracy | Macro F1 |
+|---|---:|---:|
+| Random split | **0.980** | **0.982** |
+| Spatial holdout | **0.420** | **0.151** |
+
+![Training map](figures/training_map.svg)
+![Validation comparison](figures/validation_comparison.svg)
+![Feature importance](figures/feature_importance.svg)
 
 ## Run
 ```bash
 pip install -r requirements.txt
-python src/demo.py
-pytest -q
+python scripts/run_demo.py
+python -m pytest -q
 ```
 
-## Data note
-The demonstration script generates synthetic land-cover samples. Replace them with field samples, labeled polygons, or satellite-extracted training points for a real project.
+## Key takeaway
+This project demonstrates that geospatial ML evaluation should respect spatial structure rather than rely only on random row-level splits. Spatial holdout exposes generalization weaknesses that can remain hidden under random validation.
 
-## Why recruiters should care
-This project shows both machine-learning implementation and awareness of geospatial validation, which is essential for credible Earth-observation models.
-
-## Author
-Priyanka Belbase | GIS | Geospatial AI | Earth Observation | Machine Learning
+## Applications
+The same validation principle is relevant to land-cover mapping, vegetation classification, agricultural remote sensing, habitat modeling, environmental prediction, and other spatial machine-learning problems where nearby observations are not statistically independent.
