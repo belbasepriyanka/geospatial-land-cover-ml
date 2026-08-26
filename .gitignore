@@ -5,3 +5,10 @@ __pycache__/
 venv/
 .env
 .DS_Store
+
+# DeepWeeds public dataset and generated model artifacts
+deepweeds_pytorch/data/
+deepweeds_pytorch/results/*
+!deepweeds_pytorch/results/README.md
+*.pt
+*.pth

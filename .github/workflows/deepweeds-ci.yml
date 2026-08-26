@@ -1,0 +1,27 @@
+name: DeepWeeds PyTorch CI
+
+on:
+  push:
+    paths:
+      - "deepweeds_pytorch/**"
+      - ".github/workflows/deepweeds-ci.yml"
+  pull_request:
+    paths:
+      - "deepweeds_pytorch/**"
+      - ".github/workflows/deepweeds-ci.yml"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install CPU PyTorch
+        run: |
+          python -m pip install --upgrade pip
+          pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+          pip install pandas numpy scikit-learn matplotlib Pillow pytest
+      - name: Run unit tests
+        run: pytest -q deepweeds_pytorch/tests
